@@ -5,8 +5,16 @@ namespace Tests\Feature;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * Class LogoutTest
+ * @package Tests\Feature
+ */
 class LogoutTest extends TestCase
 {
+
+    /**
+     * Test that the user is successfully logged out.
+     */
     public function testUserIsLoggedOut()
     {
         $user = factory(User::class)->create([
@@ -25,6 +33,9 @@ class LogoutTest extends TestCase
         $this->assertEquals(null, $user->api_token);
     }
 
+    /**
+     * Test that user token is null.
+     */
     public function testUserNullToken()
     {
         $user = factory(User::class)->create(['email' => 'user@test.com']);

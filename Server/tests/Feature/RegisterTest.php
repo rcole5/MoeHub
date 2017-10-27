@@ -5,8 +5,15 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * Class RegisterTest
+ * @package Tests\Feature
+ */
 class RegisterTest extends TestCase
 {
+    /**
+     * Tests that a user was successfully registered.
+     */
     public function testRegisterSuccessfully()
     {
         $payload = [
@@ -30,6 +37,9 @@ class RegisterTest extends TestCase
             ]);
     }
 
+    /**
+     * Tests that correct errors are returned if correct info is not supplied.
+     */
     public function testRegisterRequiresNameEmailPassword()
     {
         $this->json('post', '/api/register')
@@ -50,6 +60,9 @@ class RegisterTest extends TestCase
             ]);
     }
 
+    /**
+     * Tests that password_confirmation is required.
+     */
     public function testRequirePasswordConfirmation()
     {
         $payload = [
@@ -70,6 +83,9 @@ class RegisterTest extends TestCase
             ]);
     }
 
+    /**
+     * Tests that passwords have to be the same.
+     */
     public function testIncorrectPasswordCombination()
     {
         $payload = [

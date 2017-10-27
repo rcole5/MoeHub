@@ -4,11 +4,17 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * Class LoginTest
+ * @package Tests\Feature
+ */
 class LoginTest extends TestCase
 {
-    public function testUserLogin()
+    /**
+     * Test that the correct errors are returned if email or password is not supplied.
+     */
+    public function testUserLoginRequireInfo()
     {
 
         $this->json('POST', '/api/login')
@@ -22,6 +28,9 @@ class LoginTest extends TestCase
             ]);
     }
 
+    /**
+     * Tests that a user is successfully logged in.
+     */
     public function testLoginSuccess()
     {
         $user = factory(User::class)->create([
